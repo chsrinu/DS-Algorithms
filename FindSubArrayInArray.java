@@ -1,3 +1,9 @@
+
+/**
+ * Problem reference:
+ * https://www.geeksforgeeks.org/check-whether-an-array-is-subarray-of-another-array/
+ */
+
 public class FindSubArrayInArray {
 
     public static void main(String[] args){
