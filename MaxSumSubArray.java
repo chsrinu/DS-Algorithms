@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 /**
  * Find the maxSum that can be obtained from given array
