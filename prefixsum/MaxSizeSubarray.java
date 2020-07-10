@@ -12,11 +12,14 @@ public class MaxSizeSubarray{
         int[] ar = new int[]{3,1,4,5,2};
         int k=5;
         getMaxSize_bruteForce(ar,k);
+        getMaxSize_binarySearch(ar, k);
         //Postive case
         ar = new int[]{1,2,0,2,1};
         getMaxSize_bruteForce(ar,k);
+        getMaxSize_binarySearch(ar, k);
         ar = new int[]{1,2,1,1,1};
         getMaxSize_bruteForce(ar,100);
+        getMaxSize_binarySearch(ar, 100);
     }
 /**
  * Check sample subarrays of size 5,4,..1 
@@ -73,5 +76,43 @@ public class MaxSizeSubarray{
                 found=false;
         }
         return found;
+    }
+    /**
+     * Time complexity:
+     * Best case : Omega(nlogn)
+     * Average case : Theta(nlogn)
+     * worst case : O(nlogn)
+     * 
+     * logn - to find the sample array size
+     * n -  we would be going through all the elements in 
+     *      the array of size n when subArray size is 1
+     * So Time Complexity: O(n*logn)
+     */
+    public static void getMaxSize_binarySearch(int[] ar, int k){
+        int[] prefixSum = new int[ar.length+1];
+        for(int i=0;i<ar.length;i++){
+            prefixSum[i+1]=prefixSum[i]+ar[i];
+        }
+        binarySearchForSampleSize(prefixSum,1,ar.length,k);
+    }
+
+    private static void binarySearchForSampleSize(int[] prefixSum, int low, int high,int maxSum) {
+        int maxSizePossible = 0;
+        while(low<=high){
+            int mid = (low+high)/2;
+            int i=mid;
+            for(;i<prefixSum.length;i++){
+                int sum = prefixSum[i]-prefixSum[i-mid];
+                if(sum>=maxSum)
+                    break;    
+            }
+            if(i==prefixSum.length){
+                maxSizePossible = mid;
+                low=mid+1;
+            }else{
+                high=mid-1;
+            }
+        }
+        System.out.println("All subArrays of size:"+maxSizePossible+", will have a sum<"+maxSum);
     }
 }
