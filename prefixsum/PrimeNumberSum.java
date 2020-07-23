@@ -14,10 +14,12 @@ import java.util.Arrays;
 
 public class PrimeNumberSum {
     public static void main(final String[] args) {
-        final int[] ar = new int[] {2,3,5,20,50,1000};
+        final int[] ar = new int[] {200,1000};
         bruteForceApproach(ar);
         optimizedApproach_1(ar);
-        optimizedApproach_2(ar);
+        deadEnd(ar);//You cannot get a solution with this approach .Just want you to
+        //think before implementing a binarySearch in real interview. Never go for it 
+        //if you are not sure on moving the mid element.
     }
 
     public static void bruteForceApproach(final int[] ar) {
@@ -112,7 +114,13 @@ public class PrimeNumberSum {
         }
     }
 
-    public static void optimizedApproach_2(int[] ar){
+    /**
+     * 
+     * Binary search cannot be applied in this case to find the max consecutive sum
+     * as we'll not be sure(no strict condition) to which side the mid position must be 
+     * be moved when its not found. 
+     */
+    public static void deadEnd(int[] ar){
         Arrays.sort(ar);
         List<Integer> primes = new ArrayList<>();
         for(int i=2;i<=ar[ar.length-1];i++){
@@ -133,8 +141,6 @@ public class PrimeNumberSum {
             int longest_sum = 0,longest_size = 0;
             while(low<=high){
                 int mid = (low+high)/2;
-                if(mid<longest_size)
-                    break;
                 int current_sum = 0,i = mid;
                 for(;i<prefixSum.length && current_sum<=k;i++){
                     current_sum = prefixSum[i]-prefixSum[i-mid];
@@ -149,7 +155,7 @@ public class PrimeNumberSum {
                 }
                 //increase the subArray size since we have covered
                 //everything under current size(mid)
-                if(i==prefixSum.length||(longest_size<=mid && longest_size!=0))
+                if(current_sum <= k)
                     low=mid+1;
                 //we are beyond K before reaching end of array so go for a 
                 //size less than current size(mid)

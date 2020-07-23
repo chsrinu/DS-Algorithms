@@ -1,4 +1,5 @@
 package prefixsum;
+
 /**
  * Longest Span with same Sum in two Binary arrays
  */
@@ -9,9 +10,11 @@ public class LongestSpanWithSameSum {
         int[] ar2 = new int[]{1,0};
         bruteForceApproach(ar1,ar2);
         optimizedApproach1(ar1,ar2);
-        optimizedApproach2(ar1,ar2);
+        deadEnd(ar1,ar2);//You cannot get a solution with this approach .Just want you to
+        //think before implementing a binarySearch in real interview. Never go for it 
+        //if you are not sure on moving the mid element.
+        optimizedApproach2(ar1, ar2);
     }
-
     /**
      * Best case = Omega(n^2)
      * Average case = Theta(n^2)
@@ -81,7 +84,7 @@ public class LongestSpanWithSameSum {
      * expected:2
     */
 
-    public static void optimizedApproach2(int[] ar1, int[] ar2){
+    public static void deadEnd(int[] ar1, int[] ar2){
         int maxSpan = 0;
         int[] prefixSum1 = new int[ar1.length+1];
         int[] prefixSum2 = new int[ar2.length+1];
@@ -91,7 +94,7 @@ public class LongestSpanWithSameSum {
         }
         int low=0,high=prefixSum1.length;
         while(low<=high){
-            System.out.println(low+" "+high);
+            //System.out.println(low+" "+high);
             int mid = (low+high)/2;
             boolean spanFound = false;
             for(int i= mid; i<prefixSum1.length;i++){
@@ -111,8 +114,42 @@ public class LongestSpanWithSameSum {
         }
         System.out.println(maxSpan);
     }
-
-    public static void optimizedApproach3(int[] ar1, int[] ar2){
-    
+    //@TODO--Yet to find the O(n) solution
+    public static void optimizedApproach2(int[] ar1, int[] ar2){
+        int n = ar1.length;
+        int[] diff=new int[2*n+1];
+        for(int i=0;i<diff.length;i++)
+            diff[i]=-1;
+        int prevSum1=0,prevSum2=0,longestSpan=0;
+        for(int i=0;i<n;i++){
+            prevSum1+=ar1[i];
+            prevSum2+=ar2[i];
+            int currentDiff = prevSum1-prevSum2;
+            int diffIndex = n+currentDiff;
+            //check whether both the arrays are increasing 
+            //@ same pace from index 0 till end if that's the case then
+            //i+1 would be the longest span since array has zero index
+            if(currentDiff==0){
+                longestSpan = i+1;
+            //If we come here then probably the longest span might
+            //start at an intermediatery point but not from 0 
+            //so save the starting point which can be used later;    
+            }else if(diff[diffIndex]==-1)
+                diff[diffIndex]=i;
+            else{
+                /**
+                 * If the same sum is found again means both the
+                 * arrays are increasing at same pace so
+                 * the difference remains constant. To find the 
+                 * max span we use the first found index saved in above step
+                 * and then get the difference in length with last
+                 * found index/current index.
+                 */
+                int spanSize=i-diff[diffIndex];
+                if(spanSize>longestSpan)
+                    longestSpan = spanSize;
+            }
+        }
+        System.out.println(longestSpan);
     }
 }
