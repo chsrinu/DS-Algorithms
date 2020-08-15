@@ -20,11 +20,11 @@ public class MinHeap {
         heap.add(2);
         heap.printArray();
         System.out.println(heap.getMin());
-        heap.removeMin();
+        heap.remove();
         System.out.println(heap.getMin());
-        heap.removeMin();
+        heap.remove();
         System.out.println(heap.getMin());
-        heap.removeMin();
+        heap.remove();
         heap.printArray();
         heap.add(20);
         heap.add(19);
@@ -85,7 +85,7 @@ public class MinHeap {
         ar[src] = ar[target];
         ar[target]=temp;
     }
-    public void removeMin(){
+    public void remove(){
         if(size>0){
             swap(size,minPosition);
             ar[size--]=0;
