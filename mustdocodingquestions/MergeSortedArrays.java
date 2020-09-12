@@ -5,11 +5,12 @@ import java.util.PriorityQueue;
 
 public class MergeSortedArrays {
     public static void main(String[] args){
-        //test(new int[]{8,12,100,300}, new int[]{1,122,144,150,200});
+        test(new int[]{8,12,100,300}, new int[]{1,122,144,150,200});
         testWithoutExtraSpace(new int[]{8,12,100,300}, new int[]{1,122,144,150,200});
     }
 
     private static void test(int[] ar1, int[] ar2) {
+        System.out.println("---BruteForce approach---");
         int[] bigArray = ar1.length>=ar2.length?ar1:ar2;
         int[] smallArray = ar1.length<ar2.length?ar1:ar2;
         PriorityQueue<Integer> q = new PriorityQueue<>();
@@ -37,6 +38,7 @@ public class MergeSortedArrays {
         /**
          * new int[]{8,12,100,300}, new int[]{1,122,144,150,200}
          */
+        System.out.println("---Shell sort implementation---");
         int n = A.length+B.length;
         for(int gap=n/2;gap>0;gap/=2){
             for(int i=gap;i<n;i++){
