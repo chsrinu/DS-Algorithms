@@ -5,11 +5,7 @@ import java.util.PriorityQueue;
 
 public class MergeSortedArrays {
     public static void main(String[] args){
-<<<<<<< HEAD
-        test(new int[]{8,12,100,300}, new int[]{1,122,144,150,200});
-=======
         //test(new int[]{8,12,100,300}, new int[]{1,122,144,150,200});
->>>>>>> 830487a8c40daef04adfbadcc8cffcc6a4d9df0f
         testWithoutExtraSpace(new int[]{8,12,100,300}, new int[]{1,122,144,150,200});
     }
 
