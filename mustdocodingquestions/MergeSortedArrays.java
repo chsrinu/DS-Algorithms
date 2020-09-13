@@ -3,6 +3,16 @@ package mustdocodingquestions;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
+/**
+ * https://practice.geeksforgeeks.org/problems/merge-two-sorted-arrays/0/
+ * 
+ * Given two sorted arrays Arr1[] and Arr2[] in non-decreasing order with size N and M.
+ * The task is to merge the two sorted arrays into one 
+ * sorted array (in non-decreasing order).
+
+Note:  DO NOT use extra space. We need to modify existing arrays as following.
+ */
+
 public class MergeSortedArrays {
     public static void main(String[] args){
         test(new int[]{8,12,100,300}, new int[]{1,122,144,150,200});
