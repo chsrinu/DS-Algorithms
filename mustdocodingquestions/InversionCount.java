@@ -28,7 +28,7 @@ public class InversionCount {
         sortAndCount(new int[]{5,4,3,2,1}, 10);
     }
     public static void bruteForceApproach(int[] ar, int expected){
-        int count = 0;
+        count = 0;
         for(int i=0;i<ar.length-1;i++){
             for(int j=i+1;j<ar.length;j++){
                 if(ar[i]>ar[j])
