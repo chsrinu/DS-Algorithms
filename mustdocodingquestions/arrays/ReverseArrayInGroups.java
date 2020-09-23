@@ -7,6 +7,21 @@ import java.util.Arrays;
  * 
  * Given an array, reverse every sub-array formed by consecutive k elements.
  * 
+ * Examples:
+    arr = [1, 2, 3, 4, 5, 6, 7, 8]
+    k = 10
+    Output:
+    [8, 7, 6, 5, 4, 3, 2, 1] 
+
+    arr = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    k = 3
+    Output:
+    [3, 2, 1, 6, 5, 4, 9, 8, 7]
+
+    arr = [1, 2, 3, 4, 5, 6, 7, 8]
+    k = 5
+    Output:
+    [8, 7, 6, 5, 4, 3, 2, 1] 
  * 
  * Time complexity: O(n)
  */
