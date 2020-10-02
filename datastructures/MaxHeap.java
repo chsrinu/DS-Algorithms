@@ -51,14 +51,14 @@ public class MaxHeap {
         }
         
     }
-    public void heap_up(int newPos){
+    private void heap_up(int newPos){
         int current = size;
         while(ar[current]>ar[parent(current)]){
             swap(current,parent(current));
             current = parent(current);
         }
     }
-    public void swap(int src, int target){
+    private void swap(int src, int target){
         int temp = ar[src];
         ar[src] = ar[target];
         ar[target] = temp;
@@ -80,7 +80,7 @@ public class MaxHeap {
         }
         return currentMax;
     }
-    public void heapify_down(int pos){
+    private void heapify_down(int pos){
         int biggest = pos;
         if(left(pos)<=size && ar[left(pos)]>ar[biggest])
             biggest = left(pos);
