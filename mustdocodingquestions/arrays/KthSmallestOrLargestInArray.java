@@ -65,7 +65,7 @@ public class KthSmallestOrLargestInArray {
       }
       return maxHeap.getMax();
     }
-    
+    /**Time complexity: O(n) */
     public static int optimizedApproachUsingPartitioning(int[] ar, int k){
         return partition(ar,0,ar.length-1,k)[k-1];
         
