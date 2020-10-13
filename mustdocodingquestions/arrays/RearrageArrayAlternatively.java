@@ -1,4 +1,4 @@
-package mustdocodingquestions;
+package mustdocodingquestions.arrays;
 import java.util.Arrays;
 /**
  * https://practice.geeksforgeeks.org/problems/-rearrange-array-alternately/0/
